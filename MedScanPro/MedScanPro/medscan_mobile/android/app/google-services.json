@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "589982574266",
+    "firebase_url": "https://medscan-bed48-default-rtdb.firebaseio.com",
+    "project_id": "medscan-bed48",
+    "storage_bucket": "medscan-bed48.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589982574266:android:5ee72e17ec11dcfcb14483",
+        "android_client_info": {
+          "package_name": "com.example.medscan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLDrZG5l2BgyaVl05N5S5p3A-1VNfVzQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589982574266:android:f0f212f62b522a32b14483",
+        "android_client_info": {
+          "package_name": "com.example.medscan_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLDrZG5l2BgyaVl05N5S5p3A-1VNfVzQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

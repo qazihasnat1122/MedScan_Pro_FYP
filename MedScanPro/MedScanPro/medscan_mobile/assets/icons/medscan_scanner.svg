@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Optical Scan Brackets -->
+  <path d="M3 7V4a1 1 0 0 1 1-1h3"/>
+  <path d="M17 3h3a1 1 0 0 1 1 1v3"/>
+  <path d="M21 17v3a1 1 0 0 1-1 1h-3"/>
+  <path d="M7 21H4a1 1 0 0 1-1-1v-3"/>
+  <!-- Central Pharmaceutical Capsule & Division -->
+  <rect x="7" y="9.5" width="10" height="5" rx="2.5" transform="rotate(-30 12 12)"/>
+  <line x1="10.8" y1="9.9" x2="13.2" y2="14.1"/>
+</svg>

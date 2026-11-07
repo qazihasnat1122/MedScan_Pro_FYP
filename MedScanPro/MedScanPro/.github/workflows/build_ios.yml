@@ -1,0 +1,43 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.0'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: |
+          cd medscan_mobile
+          flutter pub get
+
+      - name: Build iOS Application (No Codesign for Simulator/Testing)
+        run: |
+          cd medscan_mobile
+          flutter build ios --no-codesign --release
+
+      - name: Create Unsigned IPA Package
+        run: |
+          cd medscan_mobile/build/ios/iphoneos
+          mkdir Payload
+          cp -r Runner.app Payload/
+          zip -r MedScanPro_iOS.ipa Payload
+
+      - name: Upload iOS IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MedScanPro-iOS-App
+          path: medscan_mobile/build/ios/iphoneos/MedScanPro_iOS.ipa

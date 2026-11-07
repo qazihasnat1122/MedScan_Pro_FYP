@@ -1,0 +1,146 @@
+# =============================================================================
+# MedScan Pro FYP — Root .gitignore
+# =============================================================================
+# Covers: Flutter/Dart, Firebase, Node.js (Cloud Functions), Android, iOS,
+#         generated AI tooling, IDE settings, and local machine configuration.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# SECRETS & CREDENTIALS — NEVER COMMIT
+# -----------------------------------------------------------------------------
+.env
+.env.*
+*.env
+!.env.example
+!**/.env.example
+.secret*
+**/functions/.env
+**/functions/.env.*
+**/functions/.secret*
+**/medscan_mobile/.env
+**/medscan_mobile/.env.*
+
+# Firebase Admin SDK service account private keys
+*service-account*.json
+*serviceaccount*.json
+*credentials.json
+*firebase-adminsdk*.json
+
+# Android signing
+*.jks
+*.keystore
+key.properties
+**/android/key.properties
+
+# iOS certificates and signing
+*.p12
+*.mobileprovision
+*.cer
+
+# -----------------------------------------------------------------------------
+# FLUTTER / DART — GENERATED & MACHINE-SPECIFIC
+# -----------------------------------------------------------------------------
+# Build output (medscan_mobile/build is ~2.7 GB)
+**/build/
+
+# Dart tool metadata
+**/.dart_tool/
+
+# Flutter plugin registrant (generated)
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-version
+
+# Package cache (tools/ Pub cache ~48 MB, not needed by clone)
+tools/
+
+# Windows flutter ephemeral symlinks and generated files
+**/windows/flutter/ephemeral/
+
+# Generated part files
+*.g.dart
+*.freezed.dart
+# (Intentionally NOT excluded: hand-written generated files committed by the team
+#  such as firebase_options.dart which are manually maintained.)
+
+# Flutter web generated files
+**/lib/generated_plugin_registrant.dart
+
+# pubspec overrides
+pubspec_overrides.yaml
+
+# -----------------------------------------------------------------------------
+# ANDROID — LOCAL MACHINE CONFIGURATION
+# -----------------------------------------------------------------------------
+# Contains machine-specific SDK paths (sdk.dir, flutter.sdk) — not portable
+**/android/local.properties
+
+# Gradle caches and wrapper
+**/.gradle/
+**/android/.gradle/
+
+# Android generated keystore properties (already covered above)
+
+# -----------------------------------------------------------------------------
+# IOS — LOCAL & GENERATED
+# -----------------------------------------------------------------------------
+**/ios/.symlinks/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/*.xcworkspace
+**/macos/.symlinks/
+**/macos/Pods/
+**/macos/Podfile.lock
+
+# -----------------------------------------------------------------------------
+# FIREBASE / NODE.JS (Cloud Functions)
+# -----------------------------------------------------------------------------
+**/node_modules/
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+pubsub-debug.log
+storage-debug.log
+
+# -----------------------------------------------------------------------------
+# GRAPHIFY AI KNOWLEDGE GRAPH — Large generated tool output (~42 MB)
+# -----------------------------------------------------------------------------
+graphify-out/
+
+# -----------------------------------------------------------------------------
+# IDE — LOCAL SETTINGS
+# -----------------------------------------------------------------------------
+# Android Studio / IntelliJ IDEA workspace (machine-specific)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+.idea/caches/
+
+# VS Code
+.vscode/
+
+# JetBrains other generated
+*.iml
+*.ipr
+*.iws
+
+# -----------------------------------------------------------------------------
+# OS JUNK
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# LOGS & TEMP
+# -----------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-error.log*

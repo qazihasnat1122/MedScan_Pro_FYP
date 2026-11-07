@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MedScanPro.iml" filepath="$PROJECT_DIR$/.idea/MedScanPro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_mobile/medscan_mobile.iml" filepath="$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_mobile/medscan_mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_mobile/android/medscan_mobile_android.iml" filepath="$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_mobile/android/medscan_mobile_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_web/medscan_web.iml" filepath="$PROJECT_DIR$/MedScanPro/MedScanPro/medscan_web/medscan_web.iml" />
+    </modules>
+  </component>
+</project>

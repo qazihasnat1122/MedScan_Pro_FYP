@@ -1,0 +1,17 @@
+# Node & Firebase Functions
+node_modules/
+functions/node_modules/
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
+# Environment & Secret files (NEVER commit secrets or API keys)
+.env
+.env.*
+*.env
+!.env.example
+!functions/.env.example
+.secret*
+functions/.env*
+functions/.secret*

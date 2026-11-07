@@ -1,0 +1,14 @@
+{
+  "name": "medscan-pro-functions",
+  "version": "1.0.0",
+  "description": "Secure backend proxy for MedScan Pro Gemini prescription extraction",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.0"
+  },
+  "private": true
+}
