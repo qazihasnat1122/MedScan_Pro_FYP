@@ -148,6 +148,27 @@ Phase 4 acceptance testing logs, test outputs, and screenshots are recorded in [
 
 ---
 
+## Git Safety & Excluded Files
+
+To protect project security and ensure repository portability, the following files and folders are excluded from Git:
+
+| File / Folder | Reason |
+|---|---|
+| `.env` | Contains private API keys |
+| `.env.local` | May contain private credentials |
+| `local.properties` | Local Android SDK path |
+| `key.properties` | Android signing credentials |
+| `*.jks / *.keystore` | App signing private keys |
+| `google-services-adminsdk*.json` | Firebase Admin credentials |
+| `serviceAccountKey.json` | Firebase Admin private key |
+| `*.pem / *.p12` | Private certificates and keys |
+| `functions/.env` | Cloud Functions secrets |
+| `functions/.env.*` | Cloud Functions environment secrets |
+
+For full details, see [`docs/EXCLUDED_FILES.md`](docs/EXCLUDED_FILES.md).
+
+---
+
 ## License
 
 This project is a Final Year Project submission and is not licensed for public redistribution.
