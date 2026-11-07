@@ -14,7 +14,7 @@ plugins {
 // works automatically without requiring manual --dart-define CLI flags.
 val envFile = File(rootProject.projectDir.parentFile, ".env")
 var localGeminiKey = ""
-var localMapboxToken = ""
+var localMapboxToken = "pk.eyJ1IjoicWF6aWhhc25hdDExIiwiYSI6ImNtdmwyZnpwajB4eTczNG9oeTdmMThnNmsifQ.WrYshzcPaIXYZIYaHDqDBw"
 if (envFile.exists()) {
     envFile.forEachLine { line ->
         val trimmed = line.trim()

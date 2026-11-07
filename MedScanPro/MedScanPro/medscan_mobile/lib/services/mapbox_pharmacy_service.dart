@@ -50,8 +50,12 @@ class MapboxPharmacyService {
       'https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/tilequery';
   static const int maxCategoryResultsLimit = 25;
 
+  static const String _defaultPublicToken =
+      'pk.eyJ1IjoicWF6aWhhc25hdDExIiwiYSI6ImNtdmwyZnpwajB4eTczNG9oeTdmMThnNmsifQ.WrYshzcPaIXYZIYaHDqDBw';
+
   static const String _dartDefineToken = String.fromEnvironment(
     'MAPBOX_ACCESS_TOKEN',
+    defaultValue: _defaultPublicToken,
   );
   static const MethodChannel _platformChannel = MethodChannel(
     'com.medscan.pro/document_picker',
