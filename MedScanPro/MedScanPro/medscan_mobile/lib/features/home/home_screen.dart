@@ -307,7 +307,7 @@ class HomeScreen extends ConsumerWidget {
                       borderColor: borderColor,
                       textPrimary: textPrimary,
                       textMuted: textMuted,
-                      title: 'My Prescription',
+                      title: 'My Prescriptions',
                       icon: Icons.receipt_long_outlined,
                       accentColor: const Color(0xFF059669),
                       onTap: () => context.push('/prescriptions/upload'),
