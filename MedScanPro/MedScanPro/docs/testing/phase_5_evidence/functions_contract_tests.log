@@ -1,0 +1,26 @@
+Command: npm test
+Working Directory: MedScanPro/MedScanPro/functions
+Executed: 2026-11-09T00:17:43+05:00
+Exit code: 0
+
+Output:
+> medscan-pro-functions@1.0.0 test
+> node --test test/*.js
+
+▶ Cloud Function: extractPrescription Contract & Security
+  ✔ Enforces POST method requirement (1.1309ms)
+  ✔ Enforces Firebase Authentication Bearer token presence (0.2697ms)
+  ✔ Validates mandatory request payload fields (0.253ms)
+  ✔ Rejects unsupported file types (0.2621ms)
+  ✔ Extracts structured non-sensitive sample prescription response matching client contract (1.8169ms)
+✔ Cloud Function: extractPrescription Contract & Security (5.1694ms)
+ℹ tests 5
+ℹ suites 1
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.5384
+
+Result: 5/5 PASSED

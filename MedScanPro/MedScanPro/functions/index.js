@@ -52,10 +52,12 @@ Return strictly valid JSON matching this schema:
 
 exports.extractPrescription = onRequest(
   {
+    region: "us-central1",
     cors: true,
     maxInstances: 10,
     timeoutSeconds: 60,
     memory: "256MiB",
+    secrets: ["GEMINI_API_KEY"],
   },
   async (req, res) => {
     if (req.method !== "POST") {
@@ -131,30 +133,49 @@ exports.extractPrescription = onRequest(
         }
       }
 
-      const geminiModel = (process.env.GEMINI_MODEL || "gemini-flash-latest").trim();
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(geminiModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-      const geminiResponse = await fetch(geminiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
-        },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts }],
-          generationConfig: {
-            temperature: 0.0,
-            responseMimeType: "application/json",
-          },
-        }),
-      });
+      const candidateModels = [
+        (process.env.GEMINI_MODEL || "gemini-1.5-flash").trim(),
+        "gemini-2.0-flash",
+        "gemini-1.5-flash",
+        "gemini-flash-latest",
+      ].filter((m, idx, arr) => m && arr.indexOf(m) === idx);
 
-      if (!geminiResponse.ok) {
-        return res.status(502).json({
-          error: `Upstream AI extraction service returned HTTP ${geminiResponse.status}.`,
+      let geminiPayload = null;
+      let lastStatus = 502;
+
+      for (const modelName of candidateModels) {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+        const geminiResponse = await fetch(geminiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
+          },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts }],
+            generationConfig: {
+              temperature: 0.0,
+              responseMimeType: "application/json",
+            },
+          }),
         });
+
+        if (geminiResponse.ok) {
+          geminiPayload = await geminiResponse.json();
+          break;
+        }
+
+        lastStatus = geminiResponse.status;
+        if (lastStatus === 400 || lastStatus === 403) {
+          break;
+        }
       }
 
-      const geminiPayload = await geminiResponse.json();
+      if (!geminiPayload) {
+        return res.status(502).json({
+          error: `Upstream AI extraction service returned HTTP ${lastStatus}.`,
+        });
+      }
       const rawJsonText =
         geminiPayload?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
@@ -189,10 +210,12 @@ exports.extractPrescription = onRequest(
 
 exports.chatConsultant = onRequest(
   {
+    region: "us-central1",
     cors: true,
     maxInstances: 10,
     timeoutSeconds: 60,
     memory: "256MiB",
+    secrets: ["GEMINI_API_KEY"],
   },
   async (req, res) => {
     if (req.method !== "POST") {
