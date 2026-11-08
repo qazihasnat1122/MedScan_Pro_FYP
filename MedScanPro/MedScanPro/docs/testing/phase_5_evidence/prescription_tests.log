@@ -1,24 +1,24 @@
 Command: flutter test test/unit/prescription_parser_test.dart test/unit/prescription_workflow_test.dart --no-pub
-Working directory: medscan_mobile/
-Executed: 2026-11-08T23:28:26+05:00
+Working Directory: MedScanPro/MedScanPro/medscan_mobile
+Executed: 2026-11-09T00:27:31+05:00
 Exit code: 0
-Duration: ~9s
+Duration: ~4s
 
 Output:
-00:00 +0: loading prescription_parser_test.dart
+00:00 +0: loading D:/user/StudioProjects/MedScanPro/MedScanPro/MedScanPro/medscan_mobile/test/unit/prescription_parser_test.dart
 00:00 +0: PrescriptionParser Tests  Anti-fabrication: Blank OCR returns empty list
 00:00 +1: PrescriptionParser Tests  Anti-fabrication: Doctor/Hospital header noise returns empty list
 00:00 +2: PrescriptionParser Tests  Structured extraction: Parses valid drug line with dosage and frequency
 00:00 +3: PrescriptionParser Tests  Candidate matching: Resolves known reference medicine name
-00:02 +4: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Rejects empty, corrupt, and unsupported files gracefully
-00:02 +5: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Validates valid JPEG and multi-page PDF and extracts structured Gemini fields
-00:02 +6: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Missing or unclear fields remain unknown and marked for review (never invented)
-00:02 +7: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Gemini backend setup / network errors surface honestly without faking results
-00:03 +8: Phase 2.4, 2.5 & 2.6 — Consent Dialog, Review/Edit, History Save & Duplicate Prevention  Shows explicit External AI Consent dialog before sending file to Gemini
-00:05 +9: Phase 2.4, 2.5 & 2.6 — Consent Dialog, Review/Edit, History Save & Duplicate Prevention  Review screen highlights missing fields, allows editing & confirming, saves once without duplicates, and preserves screen on error
-00:07 +10: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  PRN ("as needed") and tapering/ambiguous schedules are detected and not auto-scheduled
-00:07 +11: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  Reminder setup requires user to fill missing clock times for "Twice daily" and handles denied notification permissions
-00:08 +12: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  Per-user access control: users can read and delete only their own prescriptions
-00:09 +13: All tests passed!
+00:00 +4: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Rejects empty, corrupt, and unsupported files gracefully
+00:00 +5: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Validates valid JPEG and multi-page PDF and extracts structured Gemini fields
+00:00 +6: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Missing or unclear fields remain unknown and marked for review (never invented)
+00:00 +7: Phase 2.1 & 2.2 — File Validation & Mocked Gemini Extraction  Gemini backend setup / network errors surface honestly without faking results
+00:00 +8: Phase 2.4, 2.5 & 2.6 — Consent Dialog, Review/Edit, History Save & Duplicate Prevention  Shows explicit External AI Consent dialog before sending file to Gemini
+00:02 +9: Phase 2.4, 2.5 & 2.6 — Consent Dialog, Review/Edit, History Save & Duplicate Prevention  Review screen highlights missing fields, allows editing & confirming, saves once without duplicates, and preserves screen on error
+00:03 +10: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  PRN ("as needed") and tapering/ambiguous schedules are detected and not auto-scheduled
+00:03 +11: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  Reminder setup requires user to fill missing clock times for "Twice daily" and handles denied notification permissions
+00:04 +12: Phase 2.7, 2.8 & Phase 3 — Optional Reminders, PRN Safety, Permissions & User Isolation  Per-user access control: users can read and delete only their own prescriptions
+00:04 +13: All tests passed!
 
 Result: 13/13 PASSED

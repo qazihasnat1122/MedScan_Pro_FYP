@@ -496,22 +496,11 @@ class PrescriptionAiService {
     required String idToken,
     required Map<String, dynamic> body,
   }) async {
-    final localDevKey = await _resolveDevApiKey();
-
-    // If a local evaluation key (.env or --dart-define) is present and the
-    // endpoint is the default Cloud Function URL, probe or use the direct key
-    // immediately so large uploads never hit `Broken pipe` against an undeployed 404 endpoint.
-    if (localDevKey.isNotEmpty &&
-        endpoint.toString().trim() == _configuredEndpoint) {
-      return await _callGeminiWithRuntimeEnvKey(body, explicitKey: localDevKey);
-    }
-
     final client = HttpClient();
     client.connectionTimeout = const Duration(seconds: 25);
     try {
       // Cheap preflight so a missing/undeployed backend (HTTP 404) is reported
-      // correctly instead of surfacing as a misleading socket error while the
-      // large request body is still being uploaded.
+      // cleanly without streaming a large multi-megabyte request body.
       try {
         final probe = await client.getUrl(endpoint);
         final probeRes = await probe.close().timeout(
@@ -519,14 +508,8 @@ class PrescriptionAiService {
         );
         await probeRes.drain<void>();
         if (probeRes.statusCode == 404) {
-          if (localDevKey.isNotEmpty) {
-            return await _callGeminiWithRuntimeEnvKey(
-              body,
-              explicitKey: localDevKey,
-            );
-          }
           throw const PrescriptionExtractionException(
-            'The secure extraction backend is not deployed yet (HTTP 404). Deploy the Firebase Cloud Function, or configure GEMINI_API_KEY in .env for local evaluation.',
+            'The secure extraction backend is not deployed yet (HTTP 404). Please use On-Device OCR or manual review.',
             isSetupError: true,
             statusCode: 404,
           );
@@ -534,19 +517,9 @@ class PrescriptionAiService {
       } on PrescriptionExtractionException {
         rethrow;
       } on SocketException {
-        if (localDevKey.isNotEmpty) {
-          return await _callGeminiWithRuntimeEnvKey(
-            body,
-            explicitKey: localDevKey,
-          );
-        }
+        // Proceed to main postUrl
       } on TimeoutException {
-        if (localDevKey.isNotEmpty) {
-          return await _callGeminiWithRuntimeEnvKey(
-            body,
-            explicitKey: localDevKey,
-          );
-        }
+        // Proceed to main postUrl
       }
 
       final request = await client.postUrl(endpoint);
@@ -569,7 +542,7 @@ class PrescriptionAiService {
             decoded = jsonVal;
           }
         } catch (_) {
-          // Non-JSON error body (e.g., 404 HTML when Cloud Function is not yet deployed)
+          // Non-JSON error body (e.g., HTML response from proxy)
         }
       }
 
@@ -579,16 +552,12 @@ class PrescriptionAiService {
 
       final serverError = (decoded['error'] ?? '').toString().trim();
       if (response.statusCode == 404 || response.statusCode == 503) {
-        if (localDevKey.isNotEmpty) {
-          return await _callGeminiWithRuntimeEnvKey(
-            body,
-            explicitKey: localDevKey,
-          );
-        }
         throw PrescriptionExtractionException(
           serverError.isNotEmpty
               ? serverError
-              : 'Secure Gemini backend is not deployed or GEMINI_API_KEY secret is not configured on Firebase Functions.',
+              : (response.statusCode == 404
+                  ? 'The secure extraction backend is not deployed yet (HTTP 404). Please use On-Device OCR or manual review.'
+                  : 'Secure Gemini backend is temporarily unavailable or GEMINI_API_KEY secret is not configured on Firebase Functions.'),
           isSetupError: true,
           statusCode: response.statusCode,
         );
@@ -619,18 +588,12 @@ class PrescriptionAiService {
     } on PrescriptionExtractionException {
       rethrow;
     } on SocketException catch (e) {
-      if (localDevKey.isNotEmpty) {
-        return await _callGeminiWithRuntimeEnvKey(
-          body,
-          explicitKey: localDevKey,
-        );
-      }
       throw PrescriptionExtractionException(
         'Could not complete the request to the extraction service (${e.osError?.message ?? e.message}). Please check your internet connection or use On-Device OCR.',
       );
     } on TimeoutException {
       throw const PrescriptionExtractionException(
-        'Prescription extraction timed out. Please try again with a clearer image or smaller PDF.',
+        'Prescription extraction timed out. Please try again with a clearer image or smaller PDF, or use On-Device OCR.',
       );
     } catch (_) {
       throw const PrescriptionExtractionException(

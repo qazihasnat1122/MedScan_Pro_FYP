@@ -1,9 +1,9 @@
 Command: flutter analyze --no-pub
-Working directory: medscan_mobile/
-Executed: 2026-11-08T23:28:08+05:00
+Working Directory: MedScanPro/MedScanPro/medscan_mobile
+Executed: 2026-11-09T00:26:05+05:00
 Exit code: 0
-Duration: 95.9s
+Duration: 69.6s
 
 Output:
 Analyzing medscan_mobile...
-No issues found! (ran in 95.9s)
+No issues found! (ran in 69.6s)
